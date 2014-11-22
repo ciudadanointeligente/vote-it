@@ -1,6 +1,6 @@
 <h1>Listing votes</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Organization</th>
@@ -25,7 +25,7 @@
         <td><%= vote.bill %></td>
         <td><%= vote.subject %></td>
         <td><%= vote.quorum %></td>
-        <td><%= vote.type %></td>
+        <td><%= vote.vote_type %></td>
         <td><%= vote.stage %></td>
         <td><%= vote.result %></td>
         <td><%= link_to 'Show', vote %></td>
