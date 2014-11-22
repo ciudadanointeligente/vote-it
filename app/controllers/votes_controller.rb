@@ -4,12 +4,16 @@ class VotesController < ApplicationController
   # GET /votes
   # GET /votes.json
   def index
-    @votes = Vote.all
+    @votes = params[:bill] ? Vote.where(bill: params[:bill]) : Vote.all
   end
 
   # GET /votes/1
   # GET /votes/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @vote }
+    end
   end
 
   # GET /votes/new

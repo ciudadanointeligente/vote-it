@@ -10,6 +10,10 @@ class VoteEventsController < ApplicationController
   # GET /vote_events/1
   # GET /vote_events/1.json
   def show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @vote }
+    end
   end
 
   # GET /vote_events/new
