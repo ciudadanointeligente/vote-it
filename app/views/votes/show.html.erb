@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Organization:</strong>
+  <%= @vote.organization %>
+</p>
+
+<p>
+  <strong>Session:</strong>
+  <%= @vote.session %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @vote.date %>
+</p>
+
+<p>
+  <strong>Bill:</strong>
+  <%= @vote.bill %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @vote.subject %>
+</p>
+
+<p>
+  <strong>Quorum:</strong>
+  <%= @vote.quorum %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @vote.type %>
+</p>
+
+<p>
+  <strong>Stage:</strong>
+  <%= @vote.stage %>
+</p>
+
+<p>
+  <strong>Result:</strong>
+  <%= @vote.result %>
+</p>
+
+<%= link_to 'Edit', edit_vote_path(@vote) %> |
+<%= link_to 'Back', votes_path %>
