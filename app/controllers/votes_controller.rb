@@ -4,7 +4,7 @@ class VotesController < ApplicationController
   # GET /votes
   # GET /votes.json
   def index
-    @votes = Vote.all
+    @votes = params[:bill] ? Vote.where(bill: params[:bill]) : Vote.all
   end
 
   # GET /votes/1
