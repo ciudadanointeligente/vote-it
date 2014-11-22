@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @vote_event.person_id %>
+</p>
+
+<p>
+  <strong>Option:</strong>
+  <%= @vote_event.option %>
+</p>
+
+<p>
+  <strong>Paired person:</strong>
+  <%= @vote_event.paired_person_id %>
+</p>
+
+<%= link_to 'Edit', edit_vote_event_path(@vote_event) %> |
+<%= link_to 'Back', vote_events_path %>
