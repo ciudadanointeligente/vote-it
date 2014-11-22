@@ -11,9 +11,15 @@ class VotesController < ApplicationController
   # GET /votes/1.json
   def show
     respond_to do |format|
-      format.html { render :show }
+      format.html { 
+        @v_events_yes = VoteEvent.where(vote_id: @vote.id, option: 'si')
+        @v_events_no = VoteEvent.where(vote_id: @vote.id, option: 'no')
+        @v_events_pair = VoteEvent.where(vote_id: @vote.id, option: 'pareo')
+        render :show 
+      }
       format.json { render json: @vote }
     end
+
   end
 
   # GET /votes/new

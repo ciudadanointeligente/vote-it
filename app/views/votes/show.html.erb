@@ -1,49 +1,64 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Organization:</strong>
-  <%= @vote.organization %>
-</p>
+<h2 class="page-header"><%= @vote.subject %> <small><%= @vote.bill %></small></h2>
 
-<p>
-  <strong>Session:</strong>
-  <%= @vote.session %>
-</p>
+<table class="table">
+  <thead></thead>
+  <tbody>
+    <tr>
+      <th>Organization</th>
+      <td><%= @vote.organization %></td>
+    </tr>
+    <tr>
+      <th>Session</th>
+      <td><%= @vote.session %></td>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <td><%= @vote.date %></td>
+    </tr>
+    <tr>
+      <th>Quorum</th>
+      <td><%= @vote.quorum %></td>
+    </tr>
+    <tr>
+      <th>Type</th>
+      <td><%= @vote.vote_type %></td>
+    </tr>
+    <tr>
+      <th>Stage</th>
+      <td><%= @vote.stage %></td>
+    </tr>
+    <tr>
+      <th>Result</th>
+      <td><%= @vote.result %></td>
+    </tr>
+  </tbody>
+</table>
 
-<p>
-  <strong>Date:</strong>
-  <%= @vote.date %>
-</p>
-
-<p>
-  <strong>Bill:</strong>
-  <%= @vote.bill %>
-</p>
-
-<p>
-  <strong>Subject:</strong>
-  <%= @vote.subject %>
-</p>
-
-<p>
-  <strong>Quorum:</strong>
-  <%= @vote.quorum %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @vote.vote_type %>
-</p>
-
-<p>
-  <strong>Stage:</strong>
-  <%= @vote.stage %>
-</p>
-
-<p>
-  <strong>Result:</strong>
-  <%= @vote.result %>
-</p>
+<div class="row">
+  <div class="col-md-4">
+    <ul>
+      <% @v_events_yes.each do |yes| %>
+        <li><%= yes.person_id %> - <%= yes.option %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <ul>
+      <% @v_events_no.each do |no| %>
+        <li><%= no.person_id %> - <%= no.option %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="col-md-4">
+    <ul>
+      <% @v_events_pair.each do |p| %>
+        <li><%= p.person_id %> - <%= p.option %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_vote_path(@vote) %> |
 <%= link_to 'Back', votes_path %>
