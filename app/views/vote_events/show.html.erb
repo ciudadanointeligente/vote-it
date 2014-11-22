@@ -15,5 +15,11 @@
   <%= @vote_event.paired_person_id %>
 </p>
 
+<p>
+  <strong>Vote:</strong>
+  <% vote = Vote.find(@vote_event.vote_id) %>
+  <%= link_to vote.subject, vote %>
+</p>
+
 <%= link_to 'Edit', edit_vote_event_path(@vote_event) %> |
 <%= link_to 'Back', vote_events_path %>
