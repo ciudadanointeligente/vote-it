@@ -38,23 +38,34 @@
 
 <div class="row">
   <div class="col-md-4">
-    <ul>
-      <% @yes.each do |yes| %>
-        <li><%= yes %> - Si</li>
+    <ul class="list-inline votes-yes">
+      <% @yes.each do |name, image| %>
+        <li>
+          <img width="30" height="30" src="<%= image %>" alt="<%= name %>" class="img-circle img-responsive" title="<%= name %>">
+        </li>
       <% end %>
     </ul>
   </div>
   <div class="col-md-4">
-    <ul>
-      <% @no.each do |no| %>
-        <li><%= no %> - no</li>
+    <ul class="list-inline votes-no">
+      <% @no.each do |name, image| %>
+        <li>
+          <img width="30" height="30" src="<%= image %>" alt="<%= name %>" class="img-circle img-responsive" title="<%= name %>">
+        </li>
       <% end %>
     </ul>
   </div>
   <div class="col-md-4">
-    <ul>
-      <% @pair.each do |p| %>
-        <li><%= p %> - pair</li>
+    <ul class="list-inline votes-pair">
+      <% @pair.each do |first, second| %>
+          <li>
+            <% first.each do |name, image| %>
+                <img width="30" height="30" src="<%= image %>" alt="<%= name %>" class="img-circle img-responsive" title="<%= name %>">
+            <% end %>
+            <% second.each do |name, image| %>
+                <img width="30" height="30" src="<%= image %>" alt="<%= name %>" class="img-circle img-responsive" title="<%= name %>">
+            <% end %>
+          </li>
       <% end %>
     </ul>
   </div>
