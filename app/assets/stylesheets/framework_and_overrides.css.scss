@@ -47,7 +47,7 @@ section {
   text-align: center;
   border: 1px solid #000;
   width: 100%;
-  heigth: 100%;
+  height: 100%;
 }
 .round-border {
   border-radius: 3px;
@@ -59,4 +59,31 @@ section {
 }
 .votes-pair li{
   margin-left: 5px;
+}
+div#last-votes:first-child {
+  border-right: 1px solid #CCC;
+}
+.nro-total {
+  font-size: 40px;
+}
+.panel-title {
+  min-height: 98px;
+}
+.title-recently {
+  font-size: 18px;
+}
+.panel-graph {
+  margin-bottom: 10px;
+}
+.donnuts {
+  max-height: 200px;
+}
+.afavor {
+  color: blue;
+}
+.encontra {
+  color: red;
+}
+.abstencion {
+  color: gray;
 }

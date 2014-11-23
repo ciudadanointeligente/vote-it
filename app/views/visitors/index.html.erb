@@ -18,3 +18,103 @@
     </div>
   </div>
 </div>
+
+<h2 class="page-header">Últimas Votaciones</h2>
+
+<div id="last-votes" class="row">
+  <% @last_votes.each do |v| %>
+  <div class="col-md-6">
+    <div class="panel-title">
+      <h3 class="title-recently">
+        <i class="fa fa-file-o"></i> <%= v.subject %>
+      </h3>
+      <p><%= v.date %></p>
+    </div>
+    <div id="donnut-<%= v.id %>" class="donnuts"></div>
+    <div class="row panel-graph">
+      <div class="col-md-4 text-center afavor">
+        <h4 class="nro-total"><%= @votes_count[v.id]['si'] || 0 %></h4>
+        a favor
+      </div>
+      <div class="col-md-4 text-center abstencion">
+        <h4 class="nro-total"><%= @votes_count[v.id]['pareo'] || 0 %></h4>
+        pareos
+      </div>
+      <div class="col-md-4 text-center encontra">
+        <h4 class="nro-total"><%= @votes_count[v.id]['no'] || 0 %></h4>
+        en contra
+      </div>
+    </div>
+    <div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>&nbsp;</th>
+            <th colspan="6">Nueva Mayoría</th>
+            <th colspan="2">Alianza</th>
+          </tr>
+          <tr>
+            <th>&nbsp;</th>
+            <th>DC</th>
+            <th>PPD</th>
+            <th>PS</th>
+            <th>PRSD</th>
+            <th>PC</th>
+            <th>IND</th>
+            <th>UDI</th>
+            <th>RN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Si</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>No</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+          <tr>
+            <td>Abs</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script>
+  $(document).ready(function(){
+      Morris.Donut({
+        element: 'donnut-<%= v.id %>',
+        data: [
+          {label: "a favor", value: <%= @votes_count[v.id]['si'] || 0 %>},
+          {label: "en contra", value: <%= @votes_count[v.id]['no'] || 0 %>},
+          {label: "pareos", value: <%= @votes_count[v.id]['pareo'] || 0 %>}
+        ],
+        colors: ['blue', 'red', '#CCC']
+      });
+  })
+  </script>
+  <% end %>
+</div>
