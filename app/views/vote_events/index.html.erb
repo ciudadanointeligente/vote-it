@@ -13,7 +13,7 @@
   <tbody>
     <% @vote_events.each do |vote_event| %>
       <tr>
-        <td><%= vote_event.person_id %></td>
+        <td><%= vote_event.person_hash["name"] %></td>
         <td><%= vote_event.option %></td>
         <td><%= vote_event.paired_person_id %></td>
         <td><%= link_to 'Show', vote_event %></td>

@@ -57,6 +57,8 @@ class VotesController < ApplicationController
       format.json { render json: @vote }
     end
 
+    @per_party = this.per_party
+
   end
 
   # GET /votes/new
