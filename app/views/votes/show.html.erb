@@ -46,15 +46,15 @@
   </div>
   <div class="col-md-4">
     <ul>
-      <% @v_events_no.each do |no| %>
-        <li><%= no.person_id %> - <%= no.option %></li>
+      <% @no.each do |no| %>
+        <li><%= no %> - no</li>
       <% end %>
     </ul>
   </div>
   <div class="col-md-4">
     <ul>
-      <% @v_events_pair.each do |p| %>
-        <li><%= p.person_id %> - <%= p.option %></li>
+      <% @pair.each do |p| %>
+        <li><%= p %> - pair</li>
       <% end %>
     </ul>
   </div>

@@ -12,15 +12,46 @@ class VotesController < ApplicationController
   # GET /votes/1.json
   def show
     @yes = Array.new
+    @no = Array.new
+    @pair = Array.new
+
     respond_to do |format|
       format.html { 
+        getData = JSON.parse( open('app/assets/json/pmocl.json').read )['result']
+
         v_events_yes = VoteEvent.where(vote_id: @vote.id, option: 'si')
         v_events_yes.each do |vvy|
-          getData = JSON.parse( open('http://pmocl.popit.mysociety.org/api/v0.1/persons/'+vvy.person_id).read )['result']
-          @yes << getData['name']
+          getData.each do |data|
+            if data['id'] == vvy.person_id
+              @yes << data['name']
+            end
+          end
         end
-        @v_events_no = VoteEvent.where(vote_id: @vote.id, option: 'no')
-        @v_events_pair = VoteEvent.where(vote_id: @vote.id, option: 'pareo')
+
+        v_events_no = VoteEvent.where(vote_id: @vote.id, option: 'no')
+        v_events_no.each do |vvn|
+          getData.each do |data|
+            if data['id'] == vvn.person_id
+              @no << data['name']
+            end
+          end
+        end
+
+        v_events_pair = VoteEvent.where(vote_id: @vote.id, option: 'pareo')
+        v_events_pair.each do |vvp|
+          first = ''
+          second = ''
+          getData.each do |data|
+            if data['id'] == vvp.person_id
+              first = data['name']
+            end
+            if data['id'] == vvp.paired_person_id
+              second = data['name']
+            end
+          end
+          @pair << first +' / '+ second
+        end
+
         render :show 
       }
       format.json { render json: @vote }
