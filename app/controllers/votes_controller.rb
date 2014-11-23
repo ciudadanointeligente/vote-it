@@ -55,9 +55,10 @@ class VotesController < ApplicationController
         render :show 
       }
       format.json { render json: @vote }
+      
+      @per_party = @vote.per_party
     end
 
-    @per_party = this.per_party
 
   end
 
