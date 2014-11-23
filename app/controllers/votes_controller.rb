@@ -1,3 +1,4 @@
+require "open-uri"
 class VotesController < ApplicationController
   before_action :set_vote, only: [:show, :edit, :update, :destroy]
 
@@ -10,9 +11,14 @@ class VotesController < ApplicationController
   # GET /votes/1
   # GET /votes/1.json
   def show
+    @yes = Array.new
     respond_to do |format|
       format.html { 
-        @v_events_yes = VoteEvent.where(vote_id: @vote.id, option: 'si')
+        v_events_yes = VoteEvent.where(vote_id: @vote.id, option: 'si')
+        v_events_yes.each do |vvy|
+          getData = JSON.parse( open('http://pmocl.popit.mysociety.org/api/v0.1/persons/'+vvy.person_id).read )['result']
+          @yes << getData['name']
+        end
         @v_events_no = VoteEvent.where(vote_id: @vote.id, option: 'no')
         @v_events_pair = VoteEvent.where(vote_id: @vote.id, option: 'pareo')
         render :show 
