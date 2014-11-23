@@ -11,9 +11,9 @@ class VotesController < ApplicationController
   # GET /votes/1
   # GET /votes/1.json
   def show
-    @yes = Array.new
-    @no = Array.new
-    @pair = Array.new
+    @yes = Hash.new
+    @no = Hash.new
+    @pair = Hash.new
 
     respond_to do |format|
       format.html { 
@@ -23,7 +23,7 @@ class VotesController < ApplicationController
         v_events_yes.each do |vvy|
           getData.each do |data|
             if data['id'] == vvy.person_id
-              @yes << data['name']
+              @yes[data['name']] = data['images'][0]['url']
             end
           end
         end
@@ -32,24 +32,24 @@ class VotesController < ApplicationController
         v_events_no.each do |vvn|
           getData.each do |data|
             if data['id'] == vvn.person_id
-              @no << data['name']
+              @no[data['name']] = data['images'][0]['url']
             end
           end
         end
 
         v_events_pair = VoteEvent.where(vote_id: @vote.id, option: 'pareo')
         v_events_pair.each do |vvp|
-          first = ''
-          second = ''
+          first = Hash.new
+          second = Hash.new
           getData.each do |data|
             if data['id'] == vvp.person_id
-              first = data['name']
+              first[data['name']] = data['images'][0]['url']
             end
             if data['id'] == vvp.paired_person_id
-              second = data['name']
+              second[data['name']] = data['images'][0]['url']
             end
           end
-          @pair << first +' / '+ second
+          @pair[first] = second
         end
 
         render :show 
