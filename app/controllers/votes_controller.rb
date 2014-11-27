@@ -57,6 +57,12 @@ class VotesController < ApplicationController
       format.json { render json: @vote }
       
       @per_party = @vote.per_party
+      
+      @parties = Hash.new
+      JSON.parse( open('app/assets/json/organizations.json').read )['result'].each do |party|
+        @parties[party["name"]] = party["other_names"][0]["name"]
+      end
+
     end
 
 

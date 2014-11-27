@@ -27,44 +27,104 @@
         <strong>Resultado</strong> <%= @vote.result %>
       </li>
     </ul>
-    
-    <div>
-      <div id="donnut-<%= @vote.id %>" class="donnuts"></div>
-      <script>
-      $(document).ready(function(){
-          Morris.Donut({
-            element: 'donnut-<%= @vote.id %>',
-            data: [
-              {label: "Si", value: <%= @vote.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %>},
-              {label: "No", value: <%= @vote.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %>},
-              {label: "Pareos", value: <%= @vote.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %>}
-            ],
-            colors: ['blue', 'red', '#CCC']
-          });
-      })
-      </script>
-      <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>&nbsp;</th>
-            <th>Si</th>
-            <th>No</th>
-            <th>Pareos</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>&nbsp;</td>
-            <td><%= @vote.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %></td>
-            <td><%= @vote.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %></td>
-            <td><%= @vote.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    
   </div>
   <div class="col-md-9">
+    <div class="row">
+      <div class="col-md-6">
+        <div id="donnut-<%= @vote.id %>" class="donnuts"></div>
+        <script>
+        $(document).ready(function(){
+            Morris.Donut({
+              element: 'donnut-<%= @vote.id %>',
+              data: [
+                {label: "Si", value: <%= @vote.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %>},
+                {label: "No", value: <%= @vote.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %>},
+                {label: "Pareos", value: <%= @vote.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %>}
+              ],
+              colors: ['blue', 'red', '#CCC']
+            });
+        })
+        </script>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Si</strong></td>
+              <td><%= @vote.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %></td>
+            </tr>
+            <tr>
+              <td><strong>No</strong></td>
+              <td><%= @vote.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %></td>
+            </tr>
+            <tr>
+              <td><strong>Pareos</strong></td>
+              <td><%= @vote.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-6">
+        <div id="donnut-parties" class="donnuts"></div>
+        <script>
+        $(document).ready(function(){
+            Morris.Donut({
+              element: 'donnut-parties',
+              data: [
+                <% @vote.per_party.each do |name, vote| %>
+                  <% next if vote.empty? %>
+                  {
+                    label: "<%= @parties[name] %>",
+                    value: <%= vote.select {|vote| vote['option'] == "si"}.count %>
+                  },
+                <% end %>
+              ]
+            });
+        })
+        </script>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <td>&nbsp;</td>
+              <% @vote.per_party.each do |name, vote| %>
+                <% next if vote.empty? %>
+                <th><abbr title="<%= name %>"><%= @parties[name] %></abbr></th>
+              <% end %>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Si</strong></td>
+              <% @vote.per_party.each do |name, vote| %>
+                <% next if vote.empty? %>
+                <td><%= vote.select {|vote| vote['option'] == "si"}.count %></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td><strong>No</strong></td>
+              <% @vote.per_party.each do |name, vote| %>
+                <% next if vote.empty? %>
+                <td><%= vote.select {|vote| vote['option'] == "no"}.count %></td>
+              <% end %>
+            </tr>
+            <tr>
+              <td><strong>Pareo</strong></td>
+              <% @vote.per_party.each do |name, vote| %>
+                <% next if vote.empty? %>
+                <td><%= vote.select {|vote| vote['option'] == "pareo"}.count %></td>
+              <% end %>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
     <% @per_party.each do |name, votes|%>
       <% next if votes.empty? %>
       <div class="row">
