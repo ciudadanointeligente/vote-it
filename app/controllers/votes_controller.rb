@@ -5,7 +5,16 @@ class VotesController < ApplicationController
   # GET /votes
   # GET /votes.json
   def index
-    @votes = params[:bill] ? Vote.where(bill: params[:bill]) : Vote.all
+    if params[:bill]
+      @votes = Vote.where(bill: params[:bill])
+      render :bill
+    elsif params[:party]
+      @votes = Vote.all
+      @party = JSON.parse( open('app/assets/json/organizations.json').read )['result'].select {|party| party['id'] == params[:party]}.first
+      render :party
+    else
+      @votes = Vote.all
+    end
   end
 
   # GET /votes/1
