@@ -26,78 +26,60 @@
   <div class="col-md-6">
     <div class="panel-title">
       <h3 class="title-recently">
-        <i class="fa fa-file-o"></i> <%= v.subject %>
+        <i class="fa fa-file-o"></i>
+        <%= link_to v do %>
+          <%= v.subject %>
+        <% end %>
       </h3>
       <p><%= v.date %></p>
     </div>
     <div id="donnut-<%= v.id %>" class="donnuts"></div>
     <div class="row panel-graph">
       <div class="col-md-4 text-center afavor">
-        <h4 class="nro-total"><%= @votes_count[v.id]['si'] || 0 %></h4>
+        <h4 class="nro-total"><%= v.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %></h4>
         a favor
       </div>
       <div class="col-md-4 text-center abstencion">
-        <h4 class="nro-total"><%= @votes_count[v.id]['pareo'] || 0 %></h4>
+        <h4 class="nro-total"><%= v.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %></h4>
         pareos
       </div>
       <div class="col-md-4 text-center encontra">
-        <h4 class="nro-total"><%= @votes_count[v.id]['no'] || 0 %></h4>
+        <h4 class="nro-total"><%= v.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %></h4>
         en contra
       </div>
     </div>
     <div>
-      <table class="table">
+      <table class="table table-striped table-condensed">
         <thead>
           <tr>
-            <th>&nbsp;</th>
-            <th colspan="6">Nueva Mayoría</th>
-            <th colspan="2">Alianza</th>
-          </tr>
-          <tr>
-            <th>&nbsp;</th>
-            <th>DC</th>
-            <th>PPD</th>
-            <th>PS</th>
-            <th>PRSD</th>
-            <th>PC</th>
-            <th>IND</th>
-            <th>UDI</th>
-            <th>RN</th>
+            <td>&nbsp;</td>
+            <% v.per_party.each do |name, vote| %>
+              <% next if vote.empty? %>
+              <th><abbr title="<%= name %>"><%= name[0,5] %></abbr></th>
+            <% end %>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Si</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td><strong>Si</strong></td>
+            <% v.per_party.each do |name, vote| %>
+              <% next if vote.empty? %>
+              <td><%= vote.select {|vote| vote['option'] == "si"}.count %></td>
+            <% end %>
           </tr>
           <tr>
-            <td>No</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td><strong>No</strong></td>
+            <% v.per_party.each do |name, vote| %>
+              <% next if vote.empty? %>
+              <td><%= vote.select {|vote| vote['option'] == "no"}.count %></td>
+            <% end %>
           </tr>
           <tr>
-            <td>Abs</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
+            <td><strong>Pareo</strong></td>
+            <% v.per_party.each do |name, vote| %>
+              <% next if vote.empty? %>
+              <td><%= vote.select {|vote| vote['option'] == "pareo"}.count %></td>
+            <% end %>
           </tr>
         </tbody>
       </table>
@@ -108,9 +90,9 @@
       Morris.Donut({
         element: 'donnut-<%= v.id %>',
         data: [
-          {label: "a favor", value: <%= @votes_count[v.id]['si'] || 0 %>},
-          {label: "en contra", value: <%= @votes_count[v.id]['no'] || 0 %>},
-          {label: "pareos", value: <%= @votes_count[v.id]['pareo'] || 0 %>}
+          {label: "a favor", value: <%= v.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %>},
+          {label: "en contra", value: <%= v.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %>},
+          {label: "pareos", value: <%= v.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %>}
         ],
         colors: ['blue', 'red', '#CCC']
       });
