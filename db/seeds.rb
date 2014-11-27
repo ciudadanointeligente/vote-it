@@ -29,7 +29,20 @@ Vote.create(
     date: '2014-03-13',  
     bill: '9273-05',  
     subject: 'Inadmisibilidad indicación que agrega artículo 10 al proyecto.',  
-    quorum: 'Quorum Simple',  
+    quorum: 'Mayoría Simple',  
+    vote_type: 'Discusión general', 
+    stage: 'Segundo Tramite Constitucional', 
+    result: 'Aprobado'
+  },
+  {
+    id: 3,
+    remote_id: 98,
+    organization: 'Senado',
+    session: '71/362',
+    date: '2014-11-26',  
+    bill: '9738-05',  
+    subject: 'Votación del proyecto de ley, en segundo trámite constitucional que otorga reajuste de remuneraciones a los trabajadores del sector público, concede aguinaldos que señala, y concede otros beneficios que indica, con informe de la Comisión de Hacienda. (Boletín Nº 9.738-05), con urgencia calificada de discusión inmediata. ',  
+    quorum: 'Mayoría simple',  
     vote_type: 'Discusión Única', 
     stage: 'Primer Tramite Constitucional', 
     result: 'Aprobado'
@@ -705,12 +718,6 @@ VoteEvent.create(
   },
   {
     vote_id: 2,
-    person_id: '53303667d0c05d8b737b6b92',
-    option: 'si',
-    paired_person_id: ''  
-  },
-  {
-    vote_id: 2,
     person_id: '53303726d0c05d8b737b6c9a',
     option: 'si',
     paired_person_id: ''  
@@ -878,3 +885,195 @@ VoteEvent.create(
     paired_person_id: ''  
   }
 ])
+
+VoteEvent.create(
+  [
+    {
+      vote_id: 3,
+      person_id: '53303739d0c05d8b737b6ce6',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '',
+      option: 'si',
+      paired_person_id: '5330368bd0c05d8b737b6c33'
+    },
+    {
+      vote_id: 3,
+      person_id: '53303665d0c05d8b737b6b89',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303674d0c05d8b737b6bcc',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303778d0c05d8b737b6dd3',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303726d0c05d8b737b6c9a',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '5330365fd0c05d8b737b6b74',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303772d0c05d8b737b6db6',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303669d0c05d8b737b6b9c',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303667d0c05d8b737b6b92',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '5330369fd0c05d8b737b6c8b',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303675d0c05d8b737b6bd1',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '5330374fd0c05d8b737b6d1b',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '5330366bd0c05d8b737b6baa',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303732d0c05d8b737b6cc5',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303660d0c05d8b737b6b78',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '5330366cd0c05d8b737b6baf',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '5330376cd0c05d8b737b6d9b',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53a99d1d9240c027106412db',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303689d0c05d8b737b6c2b',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '5330374ad0c05d8b737b6d0d',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303685d0c05d8b737b6c19',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303673d0c05d8b737b6bca',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '5330376ed0c05d8b737b6da4',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303666d0c05d8b737b6b8e',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303746d0c05d8b737b6cff',
+      option: 'si',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303691d0c05d8b737b6c4c',
+      option: 'no',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303756d0c05d8b737b6d36',
+      option: 'no',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303667d0c05d8b737b6b92',
+      option: 'no',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '5330375ad0c05d8b737b6d48',
+      option: 'no',
+      paired_person_id: ''
+    },
+    {
+      vote_id: 3,
+      person_id: '53303670d0c05d8b737b6bb9',
+      option: 'no',
+      paired_person_id: ''
+    },
+
+  ]
+)
