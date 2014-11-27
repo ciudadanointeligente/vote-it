@@ -29,6 +29,7 @@
     </ul>
   </div>
   <div class="col-md-9">
+    
     <div class="row">
       <div class="col-md-6">
         <div id="donnut-<%= @vote.id %>" class="donnuts"></div>
@@ -41,7 +42,7 @@
                 {label: "No", value: <%= @vote.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %>},
                 {label: "Pareos", value: <%= @vote.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %>}
               ],
-              colors: ['blue', 'red', '#CCC']
+              colors: ['green', 'red', '#CCC']
             });
         })
         </script>
@@ -124,6 +125,53 @@
         </table>
       </div>
     </div>
+
+    <!-- por partido -->
+    <div class="row">
+      <div class="col-md-4">
+        <% cnt = 0 %> 
+        <% @per_party.each do |name, votes|%>
+          <% next if votes.empty? %>
+          <% yes = votes.select {|vote| vote['option'] == "si"} %>
+          <% no = votes.select {|vote| vote['option'] == "no"} %>
+          <% pairs = votes.select {|vote| vote['option'] == "pareo"} %>
+          <% total = yes.count + no.count + pairs.count %>
+          <% total_yes = yes.count * 100 / total %>
+          <% total_no = no.count * 100 / total %>
+          <% total_pairs = pairs.count * 100 / total %>
+          
+          <div id="donnut-<%= @parties[name] %>" class="donnuts"></div>
+          <h4><%= name %></h4>
+
+          <p>
+            El <%= total_yes %>% votó a favor, un <%= total_no %>% rechazó y un <%= total_pairs %>% se pareo
+          </p>
+
+          <script>
+          $(document).ready(function(){
+              Morris.Donut({
+                element: 'donnut-<%= @parties[name] %>',
+                data: [
+                  {label: "Si", value: <%= yes.count || 0 %>},
+                  {label: "No", value: <%= no.count || 0 %>},
+                  {label: "Pareos", value: <%= pairs.count || 0 %>}
+                ],
+                colors: ['green', 'red', '#ddd']
+              });
+          })
+          </script>
+          
+          <% if cnt == 2 %>
+            </div><div class="col-md-4">
+            <% cnt = 0 %>
+          <% else %>
+            <% cnt = cnt + 1 %>
+          <% end %>
+
+        <% end %>
+      </div>
+    </div>
+    <!-- eof por partido -->
     
     <% @per_party.each do |name, votes|%>
       <% next if votes.empty? %>
