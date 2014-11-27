@@ -1,0 +1,52 @@
+<h1>Listing votes</h1>
+
+<table id="bill-table" class="table table-striped">
+  <thead>
+    <tr>
+      <th>Si</th>
+      <th>No</th>
+      <th>Pareos</th>
+      <th>Inasistentes</th>
+      <th>Organization</th>
+      <th>Session</th>
+      <th>Date</th>
+      <th>Bill</th>
+      <th>Subject</th>
+      <th>Quorum</th>
+      <th>Type</th>
+      <th>Stage</th>
+      <th>Result</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= @party['name']%>
+    <% @votes.each do |vote| %>
+      <tr>
+        <td><%= vote.vote_events.select {|vote| vote['option'] == "si" && vote.person_hash['memberships'].first['organization_id'] == params[:party]}.count || 0 %></td>
+        <td><%= vote.vote_events.select {|vote| vote['option'] == "no" && vote.person_hash['memberships'].first['organization_id'] == params[:party]}.count || 0 %></td>
+        <td><%= vote.vote_events.select {|vote| vote['option'] == "pareo" && vote.person_hash['memberships'].first['organization_id'] == params[:party]}.count || 0 %></td>
+        <td><%= vote.vote_events.select {|vote| vote['option'] == "ausente" && vote.person_hash['memberships'].first['organization_id'] == params[:party]}.count || 0 %></td>
+        <td><%= vote.organization %></td>
+        <td><%= vote.session %></td>
+        <td><%= vote.date %></td>
+        <td><%= vote.bill %></td>
+        <td><%= vote.subject %></td>
+        <td><%= vote.quorum %></td>
+        <td><%= vote.vote_type %></td>
+        <td><%= vote.stage %></td>
+        <td><%= vote.result %></td>
+        <td><%= link_to 'Show', vote %></td>
+        <td><%= link_to 'Edit', edit_vote_path(vote) %></td>
+        <td><%= link_to 'Destroy', vote, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Vote', new_vote_path %>
