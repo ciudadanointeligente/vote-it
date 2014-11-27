@@ -36,40 +36,45 @@
   </tbody>
 </table>
 
-<div class="row">
-  <div class="col-md-4">
-    <ul class="list-inline votes-yes">
-      <% @yes.each do |name, image| %>
-        <li>
-          <img width="30" height="30" src="<%= image %>" alt="<%= name %>" class="img-circle img-responsive" title="<%= name %>">
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="col-md-4">
-    <ul class="list-inline votes-no">
-      <% @no.each do |name, image| %>
-        <li>
-          <img width="30" height="30" src="<%= image %>" alt="<%= name %>" class="img-circle img-responsive" title="<%= name %>">
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <div class="col-md-4">
-    <ul class="list-inline votes-pair">
-      <% @pair.each do |first, second| %>
+<% @per_party.each do |name, votes|%>
+  <% next if votes.empty? %>
+  <div class="row">
+    <h3><%= name %></h3>
+    <div class="col-md-4">
+      <h4>SI</h4>
+      <ul class="list-inline votes-yes">
+        <% yes = votes.select {|vote| vote['option'] == "si"} %>
+        <% yes.each do |vote| %>
           <li>
-            <% first.each do |name, image| %>
-                <img width="30" height="30" src="<%= image %>" alt="<%= name %>" class="img-circle img-responsive" title="<%= name %>">
-            <% end %>
-            <% second.each do |name, image| %>
-                <img width="30" height="30" src="<%= image %>" alt="<%= name %>" class="img-circle img-responsive" title="<%= name %>">
-            <% end %>
+            <img width="30" height="30" src="<%= vote.person_hash['images'][0]['url'] %>" alt="<%= vote.person_hash['name'] %>" class="img-circle img-responsive" title="<%= vote.person_hash['name'] %>">
           </li>
-      <% end %>
-    </ul>
-  </div>
-</div>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h4>NO</h4>
+      <ul class="list-inline votes-yes">
+        <% no = votes.select {|vote| vote['option'] == "no"} %>
+        <% no.each do |vote| %>
+          <li>
+            <img width="30" height="30" src="<%= vote.person_hash['images'][0]['url'] %>" alt="<%= vote.person_hash['name'] %>" class="img-circle img-responsive" title="<%= vote.person_hash['name'] %>">
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <h4>PAREO</h4>
+      <ul class="list-inline votes-yes">
+        <% pareo = votes.select {|vote| vote['option'] == "pareo"} %>
+        <% pareo.each do |vote| %>
+          <li>
+            <img width="30" height="30" src="<%= vote.person_hash['images'][0]['url'] %>" alt="<%= vote.person_hash['name'] %>" class="img-circle img-responsive" title="<%= vote.person_hash['name'] %>">
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>  
+<% end %>
 
 <%= link_to 'Edit', edit_vote_path(@vote) %> |
 <%= link_to 'Back', votes_path %>
