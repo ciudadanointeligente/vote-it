@@ -594,7 +594,7 @@
       "other_names": [
         {
           "id": "53221150494b81480cdac5ed",
-          "name": "Partido Liberal",
+          "name": "PL",
           "start_date": null,
           "end_date": null,
           "note": ""
@@ -2811,15 +2811,15 @@
       "identifiers": [],
       "other_names": [
         {
-          "id": "532211ce494b81480cdac5f4",
-          "name": "Renovacion Nacional",
+          "id": "532211ce494b81480cdac5f3",
+          "name": "RN",
           "start_date": null,
           "end_date": null,
           "note": ""
         },
         {
-          "id": "532211ce494b81480cdac5f3",
-          "name": "RN",
+          "id": "532211ce494b81480cdac5f4",
+          "name": "Renovacion Nacional",
           "start_date": null,
           "end_date": null,
           "note": ""
@@ -4025,6 +4025,13 @@
       "identifiers": [],
       "other_names": [
         {
+          "id": "532211e4494b81480cdac5f6",
+          "name": "UDI",
+          "start_date": null,
+          "end_date": null,
+          "note": ""
+        },
+        {
           "id": "532222a0494b81480cdac600",
           "name": "UDI Popular",
           "start_date": null,
@@ -4034,13 +4041,6 @@
         {
           "id": "532211e4494b81480cdac5f7",
           "name": "Union Democrata Independiente",
-          "start_date": null,
-          "end_date": null,
-          "note": ""
-        },
-        {
-          "id": "532211e4494b81480cdac5f6",
-          "name": "UDI",
           "start_date": null,
           "end_date": null,
           "note": ""
@@ -5103,6 +5103,13 @@
       "identifiers": [],
       "other_names": [
         {
+          "id": "53221123494b81480cdac5e7",
+          "name": "PDC",
+          "start_date": null,
+          "end_date": null,
+          "note": ""
+        },
+        {
           "id": "53221123494b81480cdac5ea",
           "name": "Partido Democrata Cristiano",
           "start_date": null,
@@ -5119,13 +5126,6 @@
         {
           "id": "53221123494b81480cdac5e8",
           "name": "DC",
-          "start_date": null,
-          "end_date": null,
-          "note": ""
-        },
-        {
-          "id": "53221123494b81480cdac5e7",
-          "name": "PDC",
           "start_date": null,
           "end_date": null,
           "note": ""
@@ -5372,7 +5372,15 @@
       "links": [],
       "contact_details": [],
       "identifiers": [],
-      "other_names": [],
+      "other_names": [
+        {
+          "id": "532210cf494b81480cdac5da",
+          "name": "PRSD",
+          "start_date": null,
+          "end_date": null,
+          "note": ""
+        }
+      ],
       "url": "http://pmocl.popit.mysociety.org/api/v0.1/organizations/52fa6cae67a027d001ba3c14",
       "html_url": "http://pmocl.popit.mysociety.org/organizations/52fa6cae67a027d001ba3c14"
     }
