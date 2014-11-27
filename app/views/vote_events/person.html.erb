@@ -1,0 +1,25 @@
+<% %>
+<div class="row">
+  <div class="col-md-3">
+    <img class="img-responsive img-circle" src=<%= @person['images'].first['url'] %>>
+      <ul class="list-unstyled">
+        <li> <strong>Fecha de Nacimiento:</strong> <%= @person['birth_date']%> </li>
+        <li> <strong>Profesión:</strong> <%= @person['personal_info'][0]['profession']%> </li>
+        <li> <strong>%Votos:</strong> <%= @person['professional_info'][0]['percentage_votes'] + ' (' + @person['professional_info'][0]['place'] + ')'%> </li>
+      </ul>
+  </div>
+  <div class="col-md-9">
+    <h2 class="page-header">
+      <%= @vote_events.first.person_hash['name'] %>
+    </h2>
+    <ul class="list-unstyled">
+      <% @vote_events.each do |vote_event| %>
+        <li>
+          <% option = {"si" => "fa-thumbs-up", "no" => "fa-thumbs-down", "pareo" => "", "abstencion" => ""} %>
+          <i class="fa <%= option[vote_event.option] %>"></i>
+          <%= link_to vote_event.vote.subject, vote_event.vote %>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+</div>

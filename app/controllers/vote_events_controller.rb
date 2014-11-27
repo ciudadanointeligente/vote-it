@@ -4,7 +4,14 @@ class VoteEventsController < ApplicationController
   # GET /vote_events
   # GET /vote_events.json
   def index
-    @vote_events = params[:person_id] ? VoteEvent.where(person_id: params[:person_id]) : VoteEvent.all
+    @vote_events
+    if params[:person_id]
+      @vote_events = VoteEvent.where(person_id: params[:person_id])
+      @person = @vote_events.first.person_hash
+      render :person
+    else
+      @vote_events = VoteEvent.all
+    end
   end
 
   # GET /vote_events/1
