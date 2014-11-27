@@ -29,14 +29,14 @@ Vote.create(
     date: '2014-03-13',  
     bill: '9273-05',  
     subject: 'Inadmisibilidad indicación que agrega artículo 10 al proyecto.',  
-    quorum: 'Mayoría Simple',  
-    vote_type: 'Discusión general', 
-    stage: 'Segundo Tramite Constitucional', 
+    quorum: 'Quorum Simple',
+    vote_type: 'Discusión Única',
+    stage: 'Primer Tramite Constitucional',
     result: 'Aprobado'
   },
   {
     id: 3,
-    remote_id: 98,
+    remote_id: 11111,
     organization: 'Senado',
     session: '71/362',
     date: '2014-11-26',  
