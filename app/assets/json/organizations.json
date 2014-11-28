@@ -28,6 +28,22 @@
           "html_url": "http://pmocl.popit.mysociety.org/memberships/53208b18494b81480cdac004"
         },
         {
+          "id": "5331800f186e14f8041250e4",
+          "person_id": "53303696d0c05d8b737b6c63",
+          "role": null,
+          "post_id": null,
+          "label": null,
+          "start_date": null,
+          "end_date": null,
+          "area_id": null,
+          "area_name": null,
+          "organization_id": "52fa6c2a67a027d001ba3c0e",
+          "links": [],
+          "contact_details": [],
+          "url": "http://pmocl.popit.mysociety.org/api/v0.1/memberships/5331800f186e14f8041250e4",
+          "html_url": "http://pmocl.popit.mysociety.org/memberships/5331800f186e14f8041250e4"
+        },
+        {
           "id": "53208bac494b81480cdac008",
           "person_id": "5318e3ad6669ce99248f1bef",
           "role": null,
@@ -251,22 +267,7 @@
           "url": "http://pmocl.popit.mysociety.org/api/v0.1/memberships/53317f08186e14f8041250df",
           "html_url": "http://pmocl.popit.mysociety.org/memberships/53317f08186e14f8041250df"
         },
-        {
-          "id": "533181fb186e14f8041250f4",
-          "person_id": "53303681d0c05d8b737b6c07",
-          "role": null,
-          "post_id": null,
-          "label": null,
-          "start_date": null,
-          "end_date": null,
-          "area_id": null,
-          "area_name": null,
-          "organization_id": "52fa6c2a67a027d001ba3c0e",
-          "links": [],
-          "contact_details": [],
-          "url": "http://pmocl.popit.mysociety.org/api/v0.1/memberships/533181fb186e14f8041250f4",
-          "html_url": "http://pmocl.popit.mysociety.org/memberships/533181fb186e14f8041250f4"
-        },
+        
         {
           "id": "53318288186e14f8041250f9",
           "person_id": "53303664d0c05d8b737b6b87",
@@ -1366,6 +1367,22 @@
           "contact_details": [],
           "url": "http://pmocl.popit.mysociety.org/api/v0.1/memberships/53208a1b494b81480cdabffc",
           "html_url": "http://pmocl.popit.mysociety.org/memberships/53208a1b494b81480cdabffc"
+        },
+        {
+          "id": "533181fb186e14f8041250f4",
+          "person_id": "53303681d0c05d8b737b6c07",
+          "role": null,
+          "post_id": null,
+          "label": null,
+          "start_date": null,
+          "end_date": null,
+          "area_id": null,
+          "area_name": null,
+          "organization_id": "52fa6c2a67a027d001ba3c0e",
+          "links": [],
+          "contact_details": [],
+          "url": "http://pmocl.popit.mysociety.org/api/v0.1/memberships/533181fb186e14f8041250f4",
+          "html_url": "http://pmocl.popit.mysociety.org/memberships/533181fb186e14f8041250f4"
         },
         {
           "id": "53208a5c494b81480cdabffe",
@@ -2485,22 +2502,7 @@
           "url": "http://pmocl.popit.mysociety.org/api/v0.1/memberships/53317fdd186e14f8041250e3",
           "html_url": "http://pmocl.popit.mysociety.org/memberships/53317fdd186e14f8041250e3"
         },
-        {
-          "id": "5331800f186e14f8041250e4",
-          "person_id": "53303696d0c05d8b737b6c63",
-          "role": null,
-          "post_id": null,
-          "label": null,
-          "start_date": null,
-          "end_date": null,
-          "area_id": null,
-          "area_name": null,
-          "organization_id": "52fa6cc567a027d001ba3c16",
-          "links": [],
-          "contact_details": [],
-          "url": "http://pmocl.popit.mysociety.org/api/v0.1/memberships/5331800f186e14f8041250e4",
-          "html_url": "http://pmocl.popit.mysociety.org/memberships/5331800f186e14f8041250e4"
-        },
+        
         {
           "id": "53318067186e14f8041250e7",
           "person_id": "5330375ad0c05d8b737b6d48",
