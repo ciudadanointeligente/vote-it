@@ -81,6 +81,9 @@ div#last-votes:first-child {
   margin-bottom: 10px;
 }
 .donnuts {
+  min-width: 200px;
+  max-width: 200px;
+  min-height: 200px;
   max-height: 200px;
 }
 .afavor {
@@ -98,4 +101,31 @@ h3.party-name {
 }
 h4.vote-option {
   font-size: 14px;
+}
+.vote-yes{ 
+  i, a {
+    color: #176B02
+  }
+}
+
+.vote-no{ 
+  i, a {
+    color: #FF0000
+  }
+}
+
+.vote-pair{ 
+  i, a {
+    color: #CCC
+  }
+}
+
+.vote-abs{ 
+  i, a {
+    color: #5B5B5B
+  }
+}
+
+.title-party {
+  padding: 5px 0px 10px 0px
 }
