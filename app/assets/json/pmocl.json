@@ -334,7 +334,24 @@
       ],
       "slug": "jorge-pizarro-soto",
       "title": "Senador",
-      "memberships": [],
+      "memberships": [
+        {
+          "id": "53318d54186e14f80412514d",
+          "person_id": "53303739d0c05d8b737b6ce6",
+          "role": null,
+          "post_id": null,
+          "label": null,
+          "start_date": null,
+          "end_date": null,
+          "area_id": null,
+          "area_name": null,
+          "organization_id": "52fa6c4c67a027d001ba3c11",
+          "links": [],
+          "contact_details": [],
+          "url": "http://pmocl.popit.mysociety.org/api/v0.1/memberships/53318d54186e14f80412514d",
+          "html_url": "http://pmocl.popit.mysociety.org/memberships/53318d54186e14f80412514d"
+        }
+      ],
       "links": [
         {
           "id": "53303739d0c05d8b737b6ce8",
@@ -14199,7 +14216,24 @@
       ],
       "slug": "juan-enrique-morano-cornejo",
       "title": "Diputado",
-      "memberships": [],
+      "memberships": [
+        {
+          "id": "53318d54186e14f80412514c",
+          "person_id": "5330374cd0c05d8b737b6d14",
+          "role": null,
+          "post_id": null,
+          "label": null,
+          "start_date": null,
+          "end_date": null,
+          "area_id": null,
+          "area_name": null,
+          "organization_id": "52fa6c4c67a027d001ba3c11",
+          "links": [],
+          "contact_details": [],
+          "url": "http://pmocl.popit.mysociety.org/api/v0.1/memberships/53318d54186e14f80412514c",
+          "html_url": "http://pmocl.popit.mysociety.org/memberships/53318d54186e14f80412514c"
+        }
+      ],
       "links": [
         {
           "id": "5330374cd0c05d8b737b6d16",
