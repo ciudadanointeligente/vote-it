@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h2 class="page-header"><%= @vote.subject %> <small><%= @vote.bill %></small></h2>
+<% option = {"Aprobado" => "fa-thumbs-up", "Rechazado" => "fa-thumbs-down"} %>
+<h2 class="page-header"><i class="fa <%= option[@vote.result] %>"></i><%= @vote.subject %> <small><%= @vote.bill %></small></h2>
 
 <div class="row">
   <div class="col-md-3">
@@ -27,55 +28,55 @@
         <strong>Resultado</strong> <%= @vote.result %>
       </li>
     </ul>
+
+    <!--
+    <div id="donnut-<%= @vote.id %>" class="donnuts"></div>
+    <script>
+    $(document).ready(function(){
+        Morris.Donut({
+          element: 'donnut-<%= @vote.id %>',
+          data: [
+            {label: "Si", value: <%= @vote.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %>},
+            {label: "No", value: <%= @vote.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %>},
+            {label: "Pareos", value: <%= @vote.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %>}
+          ],
+          colors: ['green', 'red', '#CCC']
+        });
+    })
+    </script>
+    -->
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th colspan="2">&nbsp;</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Si</strong></td>
+          <td><%= @vote.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %></td>
+        </tr>
+        <tr>
+          <td><strong>No</strong></td>
+          <td><%= @vote.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %></td>
+        </tr>
+        <tr>
+          <td><strong>Pareos</strong></td>
+          <td><%= @vote.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div class="col-md-9">
-    
     <div class="row">
-      <div class="col-md-6">
-        <div id="donnut-<%= @vote.id %>" class="donnuts"></div>
+      <div class="col-md-4">
+        <h3>Si</h3>
+        <div id="donnut-parties-yes" class="donnuts"></div>
         <script>
         $(document).ready(function(){
             Morris.Donut({
-              element: 'donnut-<%= @vote.id %>',
-              data: [
-                {label: "Si", value: <%= @vote.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %>},
-                {label: "No", value: <%= @vote.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %>},
-                {label: "Pareos", value: <%= @vote.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %>}
-              ],
-              colors: ['green', 'red', '#CCC']
-            });
-        })
-        </script>
-
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>&nbsp;</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Si</strong></td>
-              <td><%= @vote.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %></td>
-            </tr>
-            <tr>
-              <td><strong>No</strong></td>
-              <td><%= @vote.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %></td>
-            </tr>
-            <tr>
-              <td><strong>Pareos</strong></td>
-              <td><%= @vote.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="col-md-6">
-        <div id="donnut-parties" class="donnuts"></div>
-        <script>
-        $(document).ready(function(){
-            Morris.Donut({
-              element: 'donnut-parties',
+              element: 'donnut-parties-yes',
               data: [
                 <% @vote.per_party.each do |name, vote| %>
                   <% next if vote.empty? %>
@@ -88,44 +89,86 @@
             });
         })
         </script>
-
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <td>&nbsp;</td>
+      </div>
+      <div class="col-md-4">
+        <h3>No</h3>
+        <div id="donnut-parties-no" class="donnuts"></div>
+        <script>
+        $(document).ready(function(){
+          Morris.Donut({
+            element: 'donnut-parties-no',
+            data: [
               <% @vote.per_party.each do |name, vote| %>
                 <% next if vote.empty? %>
-                <th><abbr title="<%= name %>"><%= @parties[name] %></abbr></th>
+                {
+                  label: "<%= @parties[name] %>",
+                  value: <%= vote.select {|vote| vote['option'] == "no"}.count %>
+                },
               <% end %>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Si</strong></td>
+            ]
+          });
+        });
+        </script>
+      </div>
+      <div class="col-md-4">
+        <h3>Pareo</h3>
+        <div id="donnut-parties-pair" class="donnuts"></div>
+        <script>
+        $(document).ready(function(){
+          Morris.Donut({
+            element: 'donnut-parties-pair',
+            data: [
               <% @vote.per_party.each do |name, vote| %>
                 <% next if vote.empty? %>
-                <td><%= vote.select {|vote| vote['option'] == "si"}.count %></td>
+                {
+                  label: "<%= @parties[name] %>",
+                  value: <%= vote.select {|vote| vote['option'] == "pareo"}.count %>
+                },
               <% end %>
-            </tr>
-            <tr>
-              <td><strong>No</strong></td>
-              <% @vote.per_party.each do |name, vote| %>
-                <% next if vote.empty? %>
-                <td><%= vote.select {|vote| vote['option'] == "no"}.count %></td>
-              <% end %>
-            </tr>
-            <tr>
-              <td><strong>Pareo</strong></td>
-              <% @vote.per_party.each do |name, vote| %>
-                <% next if vote.empty? %>
-                <td><%= vote.select {|vote| vote['option'] == "pareo"}.count %></td>
-              <% end %>
-            </tr>
-          </tbody>
-        </table>
+            ]
+          });
+        });
+        </script>
       </div>
     </div>
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <td>&nbsp;</td>
+            <% @vote.per_party.each do |name, vote| %>
+              <% next if vote.empty? %>
+              <th><abbr title="<%= name %>"><%= @parties[name] %></abbr></th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Si</strong></td>
+            <% @vote.per_party.each do |name, vote| %>
+              <% next if vote.empty? %>
+              <td><%= vote.select {|vote| vote['option'] == "si"}.count %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td><strong>No</strong></td>
+            <% @vote.per_party.each do |name, vote| %>
+              <% next if vote.empty? %>
+              <td><%= vote.select {|vote| vote['option'] == "no"}.count %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td><strong>Pareo</strong></td>
+            <% @vote.per_party.each do |name, vote| %>
+              <% next if vote.empty? %>
+              <td><%= vote.select {|vote| vote['option'] == "pareo"}.count %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+    
     <!-- por partido -->
     <div class="row">
       <div class="col-md-4">
@@ -171,51 +214,182 @@
         <% end %>
       </div>
     </div>
-    <!-- eof por partido -->
-    
-    <% @per_party.each do |name, votes|%>
-      <% next if votes.empty? %>
-      <div class="row">
-        <h3 class="party-name"><%= name %></h3>
-        <div class="col-md-4">
-          <h4 class="vote-option">SI</h4>
-          <ul class="list-inline votes-yes">
-            <% yes = votes.select {|vote| vote['option'] == "si"} %>
-            <% yes.each do |vote| %>
-              <li>
-                <a href="/vote_events/?person_id=<%= vote.person_hash['id'] %> ">
-                  <img width="30" height="30" src="<%= vote.person_hash['images'][0]['url'] %>" alt="<%= vote.person_hash['name'] %>" class="img-circle img-responsive" title="<%= vote.person_hash['name'] %>">
-                </a>
-              </li>
-            <% end %>
-          </ul>
+
+    <!-- tabpanel -->
+    <div role="tabpanel">
+      <ul class="nav nav-tabs" role="tablist" id="desagregation">
+        <li role="presentation" class="active">
+          <a href="#si" aria-controls="si" role="tab" data-toggle="tab">Si</a>
+        </li>
+        <li role="presentation">
+          <a href="#no" aria-controls="no" role="tab" data-toggle="tab">No</a>
+        </li>
+        <li role="presentation">
+          <a href="#pareo" aria-controls="pareo" role="tab" data-toggle="tab">Pareo</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="si">
+          
+          <% @per_party.each do |name, votes|%>
+            <% next if votes.empty? %>
+            <% if votes.select {|vote| vote['option'] == "si"}.count > 0 %><div><h5 class="page-header"><%= name %></h5></div><%end%>
+            <div class="row">
+              <% yes = votes.select {|vote| vote['option'] == "si"} %>
+              <% cnt = 0 %>
+              <% yes.each do |vote| %>
+                <div class="col-md-3">
+                  <div class="thumbnail">
+                    <a href="/vote_events/?person_id=<%= vote.person_hash['id'] %>">
+                      <img src="<%= vote.person_hash['images'][0]['url'] %>" alt="<%= vote.person_hash['name'] %>" class="img-rounded img-responsive" title="<%= vote.person_hash['name'] %>">
+                    </a>
+                    <div class="caption">
+                      <h5><a href="/vote_events/?person_id=<%= vote.person_hash['id'] %>"><%= vote.person_hash['name'] %></a></h5>
+                      <ul class="list-unstyled list-inline">
+                        <% if !vote.person_hash['links'][0].blank? %>
+                        <li>
+                          <a href="<%= vote.person_hash['links'][0]['url'] %>" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <% end %>
+                        <% if !vote.person_hash['links'][1].blank? %>
+                        <li>
+                          <a href="<%= vote.person_hash['links'][1]['url'] %>" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <% end %>
+                        <% if !vote.person_hash['links'][2].blank? %>
+                        <li>
+                          <a href="<%= vote.person_hash['links'][2]['url'] %>" target="_blank"><i class="fa fa-globe"></i></a>
+                        </li>
+                        <% end %>
+                      </ul>
+                      <span><abbr title="<%= vote.person_party["name"] %>"><%= vote.person_party['other_names'][0]["name"] %></abbr></span>
+                    </div>
+                  </div>
+                </div>
+                <% if cnt == 3 %>
+                  <% cnt = 0 %>
+                  </div><div class="row">
+                <% else %>
+                  <% cnt =  cnt + 1 %>
+                <%end%>
+                
+              <% end %>
+
+            </div>
+          <%end%>
+
         </div>
-        <div class="col-md-4">
-          <h4 class="vote-option">NO</h4>
-          <ul class="list-inline votes-yes">
-            <% no = votes.select {|vote| vote['option'] == "no"} %>
-            <% no.each do |vote| %>
-              <li>
-                <a href="/vote_events/?person_id=<%= vote.person_hash['id'] %> ">
-                  <img width="30" height="30" src="<%= vote.person_hash['images'][0]['url'] %>" alt="<%= vote.person_hash['name'] %>" class="img-circle img-responsive" title="<%= vote.person_hash['name'] %>">
-                </a>
-              </li>
-            <% end %>
-          </ul>
+      
+        <div role="tabpanel" class="tab-pane" id="no">
+
+          <% @per_party.each do |name, votes|%>
+            <% next if votes.empty? %>
+            <% if votes.select {|vote| vote['option'] == "no"}.count > 0 %><div><h5 class="page-header"><%= name %></h5></div><%end%>
+            <div class="row">
+              <% no = votes.select {|vote| vote['option'] == "no"} %>
+              <% cnt = 0 %>
+              <% no.each do |vote| %>
+                <div class="col-md-3">
+                  <div class="thumbnail">
+                    <a href="/vote_events/?person_id=<%= vote.person_hash['id'] %>">
+                      <img src="<%= vote.person_hash['images'][0]['url'] %>" alt="<%= vote.person_hash['name'] %>" class="img-rounded img-responsive" title="<%= vote.person_hash['name'] %>">
+                    </a>
+                    <div class="caption">
+                      <h5><a href="/vote_events/?person_id=<%= vote.person_hash['id'] %>"><%= vote.person_hash['name'] %></a></h5>
+                      <ul class="list-unstyled list-inline">
+                        <% if !vote.person_hash['links'][0].blank? %>
+                        <li>
+                          <a href="<%= vote.person_hash['links'][0]['url'] %>" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <% end %>
+                        <% if !vote.person_hash['links'][1].blank? %>
+                        <li>
+                          <a href="<%= vote.person_hash['links'][1]['url'] %>" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <% end %>
+                        <% if !vote.person_hash['links'][2].blank? %>
+                        <li>
+                          <a href="<%= vote.person_hash['links'][2]['url'] %>" target="_blank"><i class="fa fa-globe"></i></a>
+                        </li>
+                        <% end %>
+                      </ul>
+                      <span><abbr title="<%= vote.person_party["name"] %>"><%= vote.person_party['other_names'][0]["name"] %></abbr></span>
+                    </div>
+                  </div>
+                </div>
+                <% if cnt == 3 %>
+                  <% cnt = 0 %>
+                  </div><div class="row">
+                <% else %>
+                  <% cnt =  cnt + 1 %>
+                <%end%>
+                
+              <% end %>
+
+            </div>
+          <%end%>
+
         </div>
-        <div class="col-md-4">
-          <h4 class="vote-option">PAREO</h4>
-          <ul class="list-inline votes-yes">
-            <% pareo = votes.select {|vote| vote['option'] == "pareo"} %>
-            <% pareo.each do |vote| %>
-              <li>
-                <img width="30" height="30" src="<%= vote.person_hash['images'][0]['url'] %>" alt="<%= vote.person_hash['name'] %>" class="img-circle img-responsive" title="<%= vote.person_hash['name'] %>">
-              </li>
-            <% end %>
-          </ul>
+
+        <div role="tabpanel" class="tab-pane" id="pareo">
+
+          <% @per_party.each do |name, votes|%>
+            <% next if votes.empty? %>
+            <% if votes.select {|vote| vote['option'] == "pareo"}.count > 0 %><div><h5 class="page-header"><%= name %></h5></div><%end%>
+            <div class="row">
+              <% pairs = votes.select {|vote| vote['option'] == "pareo"} %>
+              <% cnt = 0 %>
+              <% pairs.each do |vote| %>
+                <div class="col-md-3">
+                  <div class="thumbnail">
+                    <a href="/vote_events/?person_id=<%= vote.person_hash['id'] %>">
+                      <img src="<%= vote.person_hash['images'][0]['url'] %>" alt="<%= vote.person_hash['name'] %>" class="img-rounded img-responsive" title="<%= vote.person_hash['name'] %>">
+                    </a>
+                    <div class="caption">
+                      <h5><a href="/vote_events/?person_id=<%= vote.person_hash['id'] %>"><%= vote.person_hash['name'] %></a></h5>
+                      <ul class="list-unstyled list-inline">
+                        <% if !vote.person_hash['links'][0].blank? %>
+                        <li>
+                          <a href="<%= vote.person_hash['links'][0]['url'] %>" target="_blank"><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <% end %>
+                        <% if !vote.person_hash['links'][1].blank? %>
+                        <li>
+                          <a href="<%= vote.person_hash['links'][1]['url'] %>" target="_blank"><i class="fa fa-facebook"></i></a>
+                        </li>
+                        <% end %>
+                        <% if !vote.person_hash['links'][2].blank? %>
+                        <li>
+                          <a href="<%= vote.person_hash['links'][2]['url'] %>" target="_blank"><i class="fa fa-globe"></i></a>
+                        </li>
+                        <% end %>
+                      </ul>
+                      <span><abbr title="<%= vote.person_party["name"] %>"><%= vote.person_party['other_names'][0]["name"] %></abbr></span>
+                    </div>
+                  </div>
+                </div>
+                <% if cnt == 3 %>
+                  <% cnt = 0 %>
+                  </div><div class="row">
+                <% else %>
+                  <% cnt =  cnt + 1 %>
+                <%end%>
+                
+              <% end %>
+
+            </div>
+          <%end%>
+        
         </div>
-      </div>  
-    <% end %>
+      </div>
+    </div>
+    <!-- eof tabpanel -->
+    <script>
+    $(document).ready(function(){
+      $("#desagregation a:first").tab("show");
+    })
+    </script> 
   </div>
 </div>
 
