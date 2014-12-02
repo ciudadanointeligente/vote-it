@@ -10,7 +10,8 @@ img {
 // override for the 'Home' navigation link
 .navbar-brand {
   font-size: inherit;
-  }
+  font-family: 'Roboto', sans-serif;
+}
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
 // create your own classes
@@ -36,7 +37,7 @@ img {
 main {
   @extend .container;
   width: 100%;
-  margin-top: 55px; // accommodate the navbar
+  margin-top: 85px; // accommodate the navbar
   }
 section {
   @extend .row;
@@ -132,4 +133,20 @@ h4.vote-option {
   border: 1px solid #EEE;
   marging: 7px;
   padding: 0px 12px;
+}
+.vote-square-yes {
+  background-color: #EEE;
+  min-height: 150px;
+}
+.vote-square-no {
+  background-color: #DDD;
+  min-height: 150px;
+}
+.vote-square-pair {
+  background-color: #DDD;
+  min-height: 150px;
+}
+.vote-square-abs {
+  background-color: #EEE;
+  min-height: 150px;
 }
