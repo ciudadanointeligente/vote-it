@@ -3,25 +3,46 @@
   <div class="col-md-3">
     <img class="img-responsive img-thumbnail" src=<%= @person['images'].first['url'] %>>
 
-    <ul class="list-unstyled">
-      <li> <strong>Fecha de Nacimiento:</strong> <%= @person['birth_date']%> </li>
-      <li> <strong>Profesión:</strong> <%= @person['personal_info'][0]['profession']%> </li>
-      <li> <strong>%Votos:</strong> <%= @person['professional_info'][0]['percentage_votes'] + ' (' + @person['professional_info'][0]['place'] + ')'%> </li>
+    <ul class="list-unstyled personal-info">
+      <li>
+        <strong>Fecha de Nacimiento:</strong> <%= @person['birth_date']%> 
+      </li>
+      <li> 
+        <strong>Profesión:</strong> <%= @person['personal_info'][0]['profession']%> 
+      </li>
+      <li> 
+        <strong>%Votos:</strong> <%= @person['professional_info'][0]['percentage_votes'] + ' (' + @person['professional_info'][0]['place'] + ')'%> 
+      </li>
+      <li> 
+        <strong>Periodo:</strong> <%= @person['parliamentarian_period'][0]['date'] %> 
+      </li>
+      <li> 
+        <strong>Representa:</strong> <%= @person['represent'][0]['district'] %> 
+      </li>
+      <li> 
+        <strong>Región:</strong> <%= @person['represent'][0]['region'] %> 
+      </li>
+      <li> 
+        <strong>Comunas:</strong> <%= @person['represent'][0]['comunas'] %> 
+      </li>
+      <li> 
+        <strong>Partido:</strong> <a href="/vote_events/?party_id=<%= @person['memberships'][0]['organization_id'] %>"><%= get_party_name @person['memberships'][0]['organization_id'] %></a>
+      </li>
     </ul>
     <ul class="list-inline list-unstyled">
       <% if !@person['links'][0].blank? %>
       <li>
-        <a href="<%= @person['links'][0]['url'] %>" target="_blank"><i class="fa fa-twitter"></i></a>
+        <a href="<%= @person['links'][0]['url'] %>" target="_blank"><i class="fa fa-twitter"></i> twitter</a>
       </li>
       <% end %>
       <% if !@person['links'][1].blank? %>
       <li>
-        <a href="<%= @person['links'][1]['url'] %>" target="_blank"><i class="fa fa-facebook"></i></a>
+        <a href="<%= @person['links'][1]['url'] %>" target="_blank"><i class="fa fa-facebook"></i> facebook</a>
       </li>
       <% end %>
       <% if !@person['links'][2].blank? %>
       <li>
-        <a href="<%= @person['links'][2]['url'] %>" target="_blank"><i class="fa fa-globe"></i></a>
+        <a href="<%= @person['links'][2]['url'] %>" target="_blank"><i class="fa fa-globe"></i> webpage</a>
       </li>
       <% end %>
     </ul>
@@ -29,16 +50,68 @@
   <div class="col-md-9">
     <h2 class="page-header">
       <%= @vote_events.first.person_hash['name'] %>
+      <small><%= get_party_name @person['memberships'][0]['organization_id'] %></small>
     </h2>
-    <ul class="list-unstyled">
-      <% @vote_events.each do |vote_event| %>
-        <% color_style = {"si" => "vote-yes", "no" => "vote-no", "pareo" => "vote-pair", "abstencion" => "vote-abs"} %>
-        <li class="<%= color_style[vote_event.option] %>">
-          <% option = {"si" => "fa-thumbs-up", "no" => "fa-thumbs-down", "pareo" => "fa-group", "abstencion" => "fa-minus-square"} %>
-          <i class="fa <%= option[vote_event.option] %>"></i>
-          <%= link_to vote_event.vote.subject, vote_event.vote %>
-        </li>
-      <%end%>
-    </ul>
+
+    <div class="" style="background-color: #eee">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="personal-box">
+            <div id="donnut-asistencia" class="donnuts"></div>
+            <p>De un total de <strong>300</strong> votaciones, Vlado Mirosevic Verdugo, ha participado en <strong>250</strong> votaciones con los siguientes resultados</p>
+            <script>
+            $(document).ready(function(){
+                Morris.Donut({
+                  element: 'donnut-asistencia',
+                  data: [
+                    {label: "Presente", value: 250},
+                    {label: "Ausente", value: 50},
+                    {label: "Pareos", value: 6}
+                  ]
+                });
+            })
+            </script>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="personal-box">
+            <h3 class="personal-compatibility">89%</h3>
+            <p>es Vlado Mirosevic Verdugo compatible con su partido.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="personal-box"></div>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="page-header">
+      Últimas votaciones
+    </h3>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Proyecto</th>
+          <th>Votación</th>
+          <th>Voto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @vote_events.each do |vote_event| %>
+        <tr>
+          <td><%= vote_event.vote.date %></td>
+          <td><%= vote_event.vote.bill %></td>
+          <td><%= link_to vote_event.vote.subject, vote_event.vote %></td>
+          <td>
+            <% option = {"si" => "fa-thumbs-up", "no" => "fa-thumbs-down", "pareo" => "fa-group", "abstencion" => "fa-minus-square"} %>
+            <% color_style = {"si" => "vote-yes", "no" => "vote-no", "pareo" => "vote-pair", "abstencion" => "vote-abs"} %>
+            <i class="fa <%= option[vote_event.option] %> <%= color_style[vote_event.option] %>"></i>
+          </td>
+        </tr>
+        <%end%>
+      </tbody>
+    </table>
+
   </div>
 </div>
