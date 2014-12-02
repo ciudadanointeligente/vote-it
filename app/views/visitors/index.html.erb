@@ -1,59 +1,41 @@
-<div class="row button-main">
-  <div class="col-md-4">
-    <div id="bills" class="box round-border">
-      <i class="fa fa-file-o fa-5x"></i>
-      <h4><%= link_to 'Proyectos de ley', votes_path %></h4>
-    </div>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Proyecto</th>
+          <th>Votacion</th>
+          <th>Si</th>
+          <th>No</th>
+          <th>Pareos</th>
+          <th>Abst</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @last_votes.each do |v| %>
+        <tr>
+          <td>
+            <%= v.date %>
+          </td>
+          <td>
+            <a href="//congresoabierto.cl/proyectos/<%= v.bill %>" target="_blank"><%= v.bill %><i class="fa fa-external-link"></i></a>
+          </td>
+          <td>
+            <%= link_to v do %>
+              <%= v.subject %>
+            <% end %>
+          </td>
+          <td><%= v.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %></td>
+          <td><%= v.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %></td>
+          <td><%= v.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %></td>
+          <td><%= v.vote_events.select {|vote| vote['option'] == "abstencion"}.count || 0 %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
   <div class="col-md-4">
-    <div id="parliamentarians" class="box round-border">
-      <i class="fa fa-male fa-5x"></i><i class="fa fa-female fa-5x"></i>
-      <h4>Diputado y/o Senador</h4>
-    </div>
-  </div>
-  <div class="col-md-4">
-    <div id="party" class="box round-border">
-      <i class="fa fa-empire fa-5x"></i>
-      <h4>Coalición y/o Partidos</h4>
-    </div>
-  </div>
-</div>
-
-<h2 class="page-header">Últimas Votaciones</h2>
-
-<div id="last-votes" class="row">
-  <% @last_votes.each do |v| %>
-  <div class="col-md-6">
-    <div class="latest-bill">
-      <div class="row panel-graph">
-        <div class="col-md-3 text-center afavor">
-          <h4 class="nro-total"><%= v.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %></h4>
-          a favor
-        </div>
-        <div class="col-md-3 text-center pareo">
-          <h4 class="nro-total"><%= v.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %></h4>
-          pareos
-        </div>
-        <div class="col-md-3 text-center encontra">
-          <h4 class="nro-total"><%= v.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %></h4>
-          en contra
-        </div>
-        <div class="col-md-3 text-center abstencion">
-          <h4 class="nro-total"><%= v.vote_events.select {|vote| vote['option'] == "abstencion"}.count || 0 %></h4>
-          abstenciones
-        </div>
-      </div>
-      <div class="panel-title">
-        <h3 class="title-recently">
-          <i class="fa fa-file-o"></i>
-          <%= link_to v do %>
-            <%= v.subject %>
-          <% end %>
-        </h3>
-        <p><%= v.date %></p>
-      </div>
-    </div>
     
   </div>
-  <% end %>
 </div>
