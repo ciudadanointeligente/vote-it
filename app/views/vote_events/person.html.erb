@@ -58,7 +58,7 @@
         <div class="col-md-4">
           <div class="personal-box">
             <div id="donnut-asistencia" class="donnuts"></div>
-            <p>De un total de <strong>300</strong> votaciones, Vlado Mirosevic Verdugo, ha participado en <strong>250</strong> votaciones con los siguientes resultados</p>
+            <p>De un total de <strong>300</strong> votaciones, <%= @person['name'] %>, ha participado en <strong>250</strong> votaciones con los siguientes resultados</p>
             <script>
             $(document).ready(function(){
                 Morris.Donut({
@@ -76,7 +76,7 @@
         <div class="col-md-4">
           <div class="personal-box">
             <h3 class="personal-compatibility">89%</h3>
-            <p>es Vlado Mirosevic Verdugo compatible con su partido.</p>
+            <p>es <%= @person['name'] %> compatible con su partido.</p>
           </div>
         </div>
         <div class="col-md-4">
