@@ -36,6 +36,114 @@
     </table>
   </div>
   <div class="col-md-4">
-    
+    <div class="main-search-form">
+      <form role="form">
+        <div class="form-group input-group">
+          <input type="text" class="form-control" id="q-vote" placeholder="buscar votación">
+          <span class="input-group-addon"><fa class="fa fa-search"></fa></span>
+        </div>
+        <div class="form-group">
+          <select name="q-search-party" id="q-search-party" class="form-control">
+            <option value="">Votaciones de un Partido o Coalisión</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <select name="q-search-parliamentarian" id="q-search-parliamentarian" class="form-control">
+            <option value="">Votaciones de un Senador o Diputado</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-default">Buscar</button>
+      </form>
+    </div>
+    <div class="last-vote">
+      <h4>
+        <%= link_to @last_votes.first do %>
+          <%= @last_votes.first.subject %>
+        <% end %>
+      </h4>
+
+      <div class="senado-composer">
+        
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -30px 0px;" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -35px 0px;" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -40px 0px;" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -45px 0px;" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -40px 0px;" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -35px 0px;" alt=""></div>
+          <div class="col-md-3"></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -10px 0px;" alt=""></div>
+          <div class="col-md-1"></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -12px 0px;" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -12px 0px;" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" style="margin: -30px 0px;" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-6"></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-6"></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-6"></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+        </div>
+        <div class="row">
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-6"></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+          <div class="col-md-1"><img src="//placehold.it/20x20" class="img-circle draw" alt=""></div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3">
+          <h3 class="text-center"><%= @last_votes.first.vote_events.select {|vote| vote['option'] == "si"}.count || 0 %></h3>
+          <p class="text-center">Si</p>
+        </div>
+        <div class="col-md-3">
+          <h3 class="text-center"><%= @last_votes.first.vote_events.select {|vote| vote['option'] == "no"}.count || 0 %></h3>
+          <p class="text-center">No</p>
+        </div>
+        <div class="col-md-3">
+          <h3 class="text-center"><%= @last_votes.first.vote_events.select {|vote| vote['option'] == "pareo"}.count || 0 %></h3>
+          <p class="text-center">Pareos</p>
+        </div>
+        <div class="col-md-3">
+          <h3 class="text-center"><%= @last_votes.first.vote_events.select {|vote| vote['option'] == "abstencion"}.count || 0 %></h3>
+          <p class="text-center">Abstenciones</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
