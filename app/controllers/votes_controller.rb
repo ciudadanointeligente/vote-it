@@ -8,9 +8,9 @@ class VotesController < ApplicationController
     if params[:bill]
       @votes = Vote.where(bill: params[:bill])
       render :bill
-    elsif params[:party]
+    elsif ! params[:party_id].blank?
       @votes = Vote.all
-      @party = JSON.parse( open('app/assets/json/organizations.json').read )['result'].select {|party| party['id'] == params[:party]}.first
+      @party = JSON.parse( open('app/assets/json/organizations.json').read )['result'].select {|party| party['id'] == params[:party_id]}.first
       render :party
     else
       @votes = Vote.all

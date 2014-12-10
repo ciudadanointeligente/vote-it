@@ -37,20 +37,20 @@
   </div>
   <div class="col-md-4">
     <div class="main-search-form">
-      <form role="form">
+      <form role="form" action="/vote_events">
         <div class="form-group input-group">
           <input type="text" class="form-control" id="q-vote" placeholder="buscar votación">
           <span class="input-group-addon"><fa class="fa fa-search"></fa></span>
         </div>
+      </form>
+      <form role="form" action="/votes">
         <div class="form-group">
-          <select name="q-search-party" id="q-search-party" class="form-control">
-            <option value="">Votaciones de un Partido o Coalisión</option>
-          </select>
+          <%= select_tag(:party_id, options_for_select(party_list), prompt: "Votaciones por Partido o Coalisión", class: "form-control", :onchange => "this.form.submit()") %>
         </div>
+      </form>
+      <form role="form" action="/vote_events">
         <div class="form-group">
-          <select name="q-search-parliamentarian" id="q-search-parliamentarian" class="form-control">
-            <option value="">Votaciones de un Senador o Diputado</option>
-          </select>
+          <%= select_tag(:person_id, options_for_select(parliamentarian_list), prompt: "Votaciones por Parlamentario", class: "form-control", :onchange => "this.form.submit()") %>
         </div>
         <button type="submit" class="btn btn-default">Buscar</button>
       </form>

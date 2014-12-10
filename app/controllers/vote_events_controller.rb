@@ -5,7 +5,7 @@ class VoteEventsController < ApplicationController
   # GET /vote_events.json
   def index
     @vote_events
-    if params[:person_id]
+    if ! params[:person_id].blank?
       @vote_events = VoteEvent.where(person_id: params[:person_id])
       @person = @vote_events.first.person_hash
       render :person
