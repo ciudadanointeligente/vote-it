@@ -896,12 +896,6 @@ VoteEvent.create(
     },
     {
       vote_id: 3,
-      person_id: '',
-      option: 'si',
-      paired_person_id: '5330368bd0c05d8b737b6c33'
-    },
-    {
-      vote_id: 3,
       person_id: '53303665d0c05d8b737b6b89',
       option: 'si',
       paired_person_id: ''
