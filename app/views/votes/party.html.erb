@@ -23,7 +23,9 @@
   </thead>
 
   <tbody>
-    <%= @party['name']%>
+    <h2>
+      <%= @party['name']%>
+    </h2>
     <% @votes.each do |vote| %>
       <tr>
         <td><%= vote.vote_events.select {|vote| vote['option'] == "si" && vote.person_hash['memberships'].first['organization_id'] == params[:party_id]}.count || 0 %></td>
